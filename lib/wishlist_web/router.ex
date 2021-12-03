@@ -14,10 +14,16 @@ defmodule WishlistWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/admin", WishlistWeb do
+    pipe_through :browser
+
+    live "/edit", EditLive
+  end
+
   scope "/", WishlistWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "", ShowLive
   end
 
   # Other scopes may use custom stacks.
